@@ -52,7 +52,7 @@ export default function Page() {
 		}
 
 		console.log()
-		const parsed = await parse(file)
+		// const parsed = await parse(file)
 
 		// const { entries } = await unzip(file)
 		// console.log(entries)
@@ -62,11 +62,11 @@ export default function Page() {
 
 		const id = nanoid(14)
 
-		addBook(id, parsed?.info.title ?? "")
+		addBook(id, file.name ?? "")
 
 		await set(id, file)
 
-		// setLocation(`/read/${id}`)
+		setLocation(`/read/${id}`)
 
 		// const reader = new FileReader()
 
