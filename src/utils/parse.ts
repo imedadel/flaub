@@ -1,5 +1,4 @@
 import { unzip, ZipEntry } from "unzipit"
-import ext2mime from "ext2mime"
 
 export async function parse(file: File) {
 	const { entries } = await unzip(file)
@@ -63,7 +62,7 @@ export async function parse(file: File) {
 
 		const html = await entries[resolvePath(path, root)].text()
 
-		const cleaned = await cleanHtml(item, html, root, manifest!, entries)
+		const cleaned = await cleanHtml(item!, html, root, manifest!, entries)
 
 		sections.push(cleaned)
 	}
@@ -137,7 +136,8 @@ async function cleanHtml(
 
 				if (isInternal(src)) {
 					src = resolvePath(src, root)
-					const mime = ext2mime(src.slice(src.lastIndexOf(".")))
+					const mime = getMime(src)
+
 					if (!mime) {
 						continue
 					}
@@ -203,6 +203,42 @@ function idFromLink(link: string, manifest: Element) {
 	const item = manifest.querySelector(`[href="${pathname.slice(1)}"]`)
 
 	return item?.getAttribute("id")!
+}
+
+function getMime(name: string) {
+	const ext = name.slice(name.lastIndexOf("."))
+
+	switch (ext) {
+		case ".jpeg":
+		case ".jpg": {
+			return "image/jpeg"
+		}
+		case ".svg": {
+			return "image/svg+xml"
+		}
+		case ".tif":
+		case ".tiff": {
+			return "image/tiff"
+		}
+		case ".webp": {
+			return "image/webp"
+		}
+		case ".bmp": {
+			return "image/bmp"
+		}
+		case ".gif": {
+			return "image/gif"
+		}
+		case ".ico": {
+			return "image/vnd.microsoft.icon"
+		}
+		case ".png": {
+			return "image/png"
+		}
+		default: {
+			return undefined
+		}
+	}
 }
 
 const isInternal = (href: string) =>

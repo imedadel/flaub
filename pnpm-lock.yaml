@@ -4,7 +4,6 @@ specifiers:
   '@types/react': ^17.0.0
   '@types/react-dom': ^17.0.0
   '@vitejs/plugin-react': ^1.0.0
-  ext2mime: ^1.0.0
   idb-keyval: ^6.0.3
   nanoid: ^3.1.30
   react: ^17.0.0
@@ -17,7 +16,6 @@ specifiers:
   zustand: ^3.5.14
 
 dependencies:
-  ext2mime: 1.0.0
   idb-keyval: 6.0.3
   nanoid: 3.1.30
   react: 17.0.2
@@ -674,10 +672,6 @@ packages:
     resolution: {integrity: sha512-sdBImtzkq2HpkdRLtlLWDa6w4DX22ijZLKx8BMPUuKe1c5lbN6xwQDQCxSfxBQnHZ13ls/FH0MQZx/q/gr6FQg==}
     dependencies:
       type: 2.5.0
-    dev: false
-
-  /ext2mime/1.0.0:
-    resolution: {integrity: sha512-mSsT6WA7RBKRavl8Qbz1t7G5Iv4G17Em0jwglaGReW0ch/UM/+11HQZLWJB6kCci2FkL4CD4oHaRdO3st3IgIg==}
     dev: false
 
   /fsevents/2.3.2:
