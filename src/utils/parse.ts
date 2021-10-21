@@ -63,7 +63,7 @@ export async function parse(file: File) {
 
 		const html = await entries[resolvePath(path, root)].text()
 
-		const cleaned = await cleanHtml(html, root, manifest!, entries)
+		const cleaned = await cleanHtml(item, html, root, manifest!, entries)
 
 		sections.push(cleaned)
 	}
@@ -100,6 +100,7 @@ function determineRoot(opfPath: string) {
 }
 
 async function cleanHtml(
+	id: string,
 	text: string,
 	root: string,
 	manifest: Element,
@@ -178,7 +179,7 @@ async function cleanHtml(
 	}
 
 	const content =
-		`<section>` +
+		`<section id="${id}">` +
 		(doc.querySelector("body") ?? doc.documentElement).innerHTML.replace(
 			/xmlns=\"(.*?)\"/g,
 			""
