@@ -1,13 +1,9 @@
-import { unzip } from "unzipit"
+import { unzip, ZipEntry } from "unzipit"
+import ext2mime from "ext2mime"
 
 export async function parse(file: File) {
 	const { entries } = await unzip(file)
 	console.log(entries)
-
-	// Init parser
-	const domParser = new DOMParser()
-	const parseXml = (xml: string) =>
-		domParser.parseFromString(xml, "application/xml")
 
 	// Find root file
 	const containerXml = parseXml(await entries["META-INF/container.xml"].text())
@@ -67,7 +63,9 @@ export async function parse(file: File) {
 
 		const html = await entries[resolvePath(path, root)].text()
 
-		sections.push(html)
+		const cleaned = await cleanHtml(html, root, manifest!, entries)
+
+		sections.push(cleaned)
 	}
 
 	return {
@@ -81,10 +79,6 @@ export async function parse(file: File) {
 		info: cleanMetadata,
 		sections,
 	}
-}
-
-function removeLeadingSlash(str: string) {
-	return str.replace(/^\/+/g, "")
 }
 
 function resolvePath(str: string, root: string) {
@@ -104,3 +98,115 @@ function determineRoot(opfPath: string) {
 	}
 	return root
 }
+
+async function cleanHtml(
+	text: string,
+	root: string,
+	manifest: Element,
+	entries: {
+		[key: string]: ZipEntry
+	}
+) {
+	const OMITTED_TAGS = ["head", "input", "textarea", "script", "style", "svg"]
+	const UNWRAP_TAGS = ["body", "html", "div", "span"]
+
+	const doc = parseXml(text)
+	const omittedEls = [...doc.querySelectorAll(OMITTED_TAGS.join(", "))]
+	const unwrapEls = [
+		...doc.querySelectorAll(
+			UNWRAP_TAGS.map((t) => `${t} > *:only-child`).join(", ")
+		),
+	]
+
+	const allEls = [...doc.querySelectorAll("*")]
+
+	for (const el of omittedEls) {
+		el.remove()
+	}
+
+	for (const el of unwrapEls) {
+		el.parentNode?.replaceChildren(...el.childNodes)
+	}
+
+	for (const el of allEls) {
+		const attrs = [...el.attributes]
+		for (const attr of attrs) {
+			if (attr.name === "src") {
+				let src = attr.value
+
+				if (isInternal(src)) {
+					src = resolvePath(src, root)
+					const mime = ext2mime(src.slice(src.lastIndexOf(".")))
+					if (!mime) {
+						continue
+					}
+
+					const imgBlob = await entries[src].blob(mime)
+					if (!imgBlob) {
+						continue
+					}
+
+					const imgb64 = (await toBase64(imgBlob)) as string
+					src = imgb64
+				}
+
+				el.setAttribute("src", src)
+			} else if (attr.name === "href") {
+				let href = attr.value
+
+				if (isInternal(href)) {
+					// Hack to avoid error
+					const { hash } = new URL(href, "http://example.com")
+
+					// TODO: what if a link only contains hash part?
+					const sectionId = idFromLink(href, manifest)
+
+					if (hash) {
+						href = `#${sectionId},${hash}`
+					}
+
+					href = `#${sectionId}`
+				}
+
+				el.setAttribute("href", href)
+			} else if (attr.name === "id") {
+				continue
+			} else {
+				el.removeAttribute(attr.name)
+			}
+		}
+	}
+
+	const content =
+		`<section>` +
+		(doc.querySelector("body") ?? doc.documentElement).innerHTML.replace(
+			/xmlns=\"(.*?)\"/g,
+			""
+		) +
+		`</section>`
+
+	return content
+}
+
+const toBase64 = (file: Blob) =>
+	new Promise((resolve, reject) => {
+		const reader = new FileReader()
+		reader.readAsDataURL(file)
+		reader.onload = () => resolve(reader.result)
+		reader.onerror = (error) => reject(error)
+	})
+
+function idFromLink(link: string, manifest: Element) {
+	const { pathname } = new URL(link, "http://example.com")
+
+	const item = manifest.querySelector(`[href="${pathname.slice(1)}"]`)
+
+	return item?.getAttribute("id")!
+}
+
+const isInternal = (href: string) =>
+	!href.startsWith("http://") && !href.startsWith("https://")
+
+const domParser = new DOMParser()
+const parseXml = (xml: string) =>
+	domParser.parseFromString(xml, "application/xml")
