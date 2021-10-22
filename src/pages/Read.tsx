@@ -13,8 +13,6 @@ export default function Page() {
 				const parsed = await parse(f)
 				setContent(parsed?.sections ?? [])
 			})
-		} else {
-			// setLoaded(false)
 		}
 	}, [params?.id])
 
