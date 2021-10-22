@@ -79,7 +79,7 @@ export default function Page() {
 	}
 
 	return (
-		<div>
+		<div className="bg-grau100">
 			<button onClick={handleChange}>Upload</button>
 		</div>
 	)

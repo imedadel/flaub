@@ -1,13 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="icon" type="image/svg+xml" href="/src/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vite App</title>
+		<script>
+			// Copied from next-theme
+			!(function () {
+				try {
+					var d = document.documentElement.classList
+					d.remove("dark-theme", "light-theme")
+					var e = localStorage.getItem("theme")
+					if ("system" === e || (!e && true)) {
+						var t = "(prefers-color-scheme: dark)",
+							m = window.matchMedia(t)
+						m.media !== t || m.matches
+							? d.add("dark-theme")
+							: d.add("light-theme")
+					} else if (e) var x = { dark: "dark-theme", light: "light-theme" }
+					d.add(x[e])
+				} catch (e) {}
+			})()
+		</script>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="/src/main.tsx"></script>
+	</body>
 </html>
