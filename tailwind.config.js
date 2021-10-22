@@ -1,6 +1,4 @@
-import { defineConfig } from "windicss/helpers"
-import formsPlugin from "windicss/plugin/forms"
-import colors from "@radix-ui/colors"
+const colors = require("@radix-ui/colors")
 
 function getColors() {
 	let c = {}
@@ -22,8 +20,9 @@ function getColors() {
 	return c
 }
 
-export default defineConfig({
+module.exports = {
 	darkMode: "class",
+	content: ["index.html", "./src/**/*.{jsx,tsx,js,ts}"],
 	theme: {
 		extend: {
 			colors: {
@@ -31,5 +30,9 @@ export default defineConfig({
 			},
 		},
 	},
-	plugins: [formsPlugin],
-})
+	plugins: [
+		require("@tailwindcss/forms"),
+		require("@tailwindcss/typography"),
+		require("@downwindcss/text-decoration"),
+	],
+}

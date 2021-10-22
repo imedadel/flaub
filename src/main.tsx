@@ -1,9 +1,8 @@
 import React from "react"
 import ReactDOM from "react-dom"
-import "./index.css"
 import App from "./App"
-import "virtual:windi.css"
 import "./styles/colors.css"
+import "tailwindcss/tailwind.css"
 
 ReactDOM.render(
 	<React.StrictMode>

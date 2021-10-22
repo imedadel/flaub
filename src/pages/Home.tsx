@@ -2,6 +2,7 @@ import { set } from "idb-keyval"
 import { nanoid } from "nanoid"
 import { unzip } from "unzipit"
 import { useLocation } from "wouter"
+import { ThemeSwitcher } from "../components/ThemeSwitcher"
 import { useStore } from "../store"
 import { parse } from "../utils/parse"
 
@@ -81,6 +82,7 @@ export default function Page() {
 	return (
 		<div className="bg-grau100">
 			<button onClick={handleChange}>Upload</button>
+			<ThemeSwitcher />
 		</div>
 	)
 }
