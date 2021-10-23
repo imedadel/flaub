@@ -28,6 +28,62 @@ module.exports = {
 			colors: {
 				...getColors(),
 			},
+			typography: {
+				DEFAULT: {
+					css: {
+						letterSpacing: "-0.02em",
+						color: "var(--gray12)",
+						a: {
+							color: "var(--gray12)",
+							"&:hover": {
+								color: "var(--gray12)",
+							},
+							fontWeight: "400",
+						},
+						strong: {
+							color: "var(--gray12)",
+							fontWeight: "600",
+						},
+						"ol > li::before": {
+							color: "var(--gray11)",
+						},
+						"ul > li::before": {
+							backgroundColor: "var(--gray11)",
+						},
+						hr: {
+							borderColor: "var(--gray6)",
+						},
+						blockquote: {
+							fontWeight: "400",
+							fontStyle: "normal",
+							color: "var(--gray12)",
+							borderLeftWidth: "0",
+							borderLeftColor: "transparent",
+							quotes: '"\\201C""\\201D""\\2018""\\2019"',
+						},
+						h1: {
+							color: "var(--gray12)",
+							fontWeight: "700",
+						},
+						h2: {
+							color: "var(--gray12)",
+							fontWeight: "700",
+						},
+						h3: {
+							color: "var(--gray12)",
+							fontWeight: "600",
+						},
+						h4: {
+							color: "var(--gray12)",
+							fontWeight: "600",
+						},
+						img: {
+							marginLeft: "auto",
+							marginRight: "auto",
+						},
+					},
+				},
+			},
 		},
 	},
 	plugins: [
