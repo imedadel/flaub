@@ -62,7 +62,14 @@ export async function parse(file: File) {
 
 		const html = await entries[resolvePath(path, root)].text()
 
-		const cleaned = await cleanHtml(item!, html, root, manifest!, entries)
+		const cleaned = await cleanHtml(
+			item!,
+			html,
+			root,
+			manifest!,
+			entries,
+			path.slice(0, path.lastIndexOf("/")) + "/"
+		)
 
 		sections.push(cleaned)
 	}
@@ -80,7 +87,13 @@ export async function parse(file: File) {
 	}
 }
 
-function resolvePath(str: string, root: string) {
+function resolvePath(str: string, root: string, ref?: string) {
+	if (str.startsWith(".") && ref != null) {
+		const url = new URL(str, `http://example.com/${ref}`)
+		console.log(str, ref, url)
+		str = url.pathname
+	}
+
 	return str[0] === "/" ? str.slice(1) : root + str
 }
 
@@ -105,7 +118,8 @@ async function cleanHtml(
 	manifest: Element,
 	entries: {
 		[key: string]: ZipEntry
-	}
+	},
+	ref?: string
 ) {
 	const OMITTED_TAGS = ["head", "input", "textarea", "script", "style", "svg"]
 	const UNWRAP_TAGS = ["body", "html", "div", "span"]
@@ -135,12 +149,15 @@ async function cleanHtml(
 				let src = attr.value
 
 				if (isInternal(src)) {
-					src = resolvePath(src, root)
+					console.log(src, ref)
+					src = resolvePath(src, root, ref)
 					const mime = getMime(src)
 
 					if (!mime) {
 						continue
 					}
+
+					console.log(src, entries)
 
 					const imgBlob = await entries[src].blob(mime)
 					if (!imgBlob) {
