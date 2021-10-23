@@ -1,12 +1,13 @@
 import create from "zustand"
 import { persist } from "zustand/middleware"
 
-type Store = {
+export type Store = {
 	books: {
 		[id: string]: {
 			title?: string
 			author?: string
 			publisher?: string
+			scrollX?: number
 		}
 	}
 	addBook: (
@@ -15,6 +16,7 @@ type Store = {
 		author?: string,
 		publisher?: string
 	) => void
+	setScrollX: (id: string, x: number) => void
 	delBook: (id: string) => void
 }
 
@@ -25,6 +27,10 @@ export const useStore = create<Store>(
 			addBook: (id, title, author, publisher) =>
 				set((state) => ({
 					books: { ...state.books, [id]: { title, author, publisher } },
+				})),
+			setScrollX: (id, x) =>
+				set((state) => ({
+					books: { ...state.books, [id]: { ...state.books[id], scrollX: x } },
 				})),
 			delBook: (id) =>
 				set((state) => {
