@@ -1,4 +1,4 @@
-# flaub <img src="./src/icons/Custom/static-logo.svg" style="height: .5em;" />
+# flaub <img src="./src/icons/Custom/static-logo.svg" height="24" />
 
 > EPUB parser and reader, built using React, Vite, and the lovely DOMParser.
 
