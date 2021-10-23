@@ -13,7 +13,7 @@ export function SavedBooks() {
 			<h2 className="text-center font-semibold text-xl tracking-tight mb-8">
 				Saved Books
 			</h2>
-			<div className="grid grid-cols-3 gap-x-4 gap-y-2">
+			<div className="grid grid-cols-2 gap-x-4 gap-y-4">
 				{books.map(([id, info]) => (
 					<Link
 						key={id}
