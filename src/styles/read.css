@@ -125,7 +125,8 @@ Variables
 .read table,
 .read tfoot,
 .read ul,
-.read video {
+.read video,
+.read section {
 	margin-top: var(--blockSpacingTop);
 	margin-bottom: var(--blockSpacingBottom);
 }
