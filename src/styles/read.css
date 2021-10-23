@@ -53,7 +53,7 @@ Variables
 	line-height: var(--lineHeight);
 	background: var(--background-color);
 	color: var(--foreground-color);
-	letter-spacing: -0.01em;
+	letter-spacing: -0.02em;
 	text-size-adjust: 100%;
 	font-variant-ligatures: contextual common-ligatures;
 	font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "cv10" 1; /* G */
