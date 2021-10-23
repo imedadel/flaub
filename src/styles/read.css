@@ -1,17 +1,12 @@
 /* Based on Raster.css */
 
-/*
-Variables
-*/
-:root {
+.read {
 	/*
   Font size is the basis of all other measurements.
   It's either constant or viewport-relative. Choose one.
   Constant: */
-	--fontSize: calc(100vw / 80);
-}
+	--fontSize: calc(0.72vw + 12px);
 
-.read {
 	--sansFont: "Inter";
 	--monoFont: "iaw-mono"; /* "IBM Plex Mono" */
 
@@ -57,6 +52,7 @@ Variables
 	text-size-adjust: 100%;
 	font-variant-ligatures: contextual common-ligatures;
 	font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "cv10" 1; /* G */
+	width: 64ch;
 }
 
 @media only screen and (max-width: 600px) {
