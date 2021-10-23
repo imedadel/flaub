@@ -3,6 +3,7 @@ import { lazy, Suspense, useState } from "react"
 // import "./App.css"
 import { Switch, Route } from "wouter"
 import { ThemeProvider } from "./contexts/theme"
+import { FontProvider } from "./contexts/font"
 
 import Home from "./pages/Home"
 import Read from "./pages/Read"
@@ -13,18 +14,20 @@ import Read from "./pages/Read"
 function App() {
 	return (
 		<ThemeProvider>
-			<Suspense
-				fallback={
-					<div className="w-screen h-screen text-gray-900 flex items-center justify-center text-2xl">
-						Loading!
-					</div>
-				}
-			>
-				<Switch>
-					<Route component={Home} path="/" />
-					<Route component={Read} path="/read/:id" />
-				</Switch>
-			</Suspense>
+			<FontProvider>
+				<Suspense
+					fallback={
+						<div className="w-screen h-screen text-gray-900 flex items-center justify-center text-2xl">
+							Loading!
+						</div>
+					}
+				>
+					<Switch>
+						<Route component={Home} path="/" />
+						<Route component={Read} path="/read/:id" />
+					</Switch>
+				</Suspense>
+			</FontProvider>
 		</ThemeProvider>
 	)
 }

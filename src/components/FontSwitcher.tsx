@@ -1,21 +1,21 @@
-import { useTheme } from "../contexts/theme"
+import { useFont } from "../contexts/font"
 import { useEffect, useState } from "react"
-import { ReactComponent as Moon } from "../icons/Feather/moon.svg"
-import { ReactComponent as Sun } from "../icons/Feather/sun.svg"
+import { ReactComponent as Square } from "../icons/Feather/square.svg"
+import { ReactComponent as Circle } from "../icons/Feather/circle.svg"
 import { ReactComponent as Loader } from "../icons/Feather/loader.svg"
 import clsx from "clsx"
 
-export function ThemeSwitcher({
+export function FontSwitcher({
 	className,
 	...props
 }: Omit<React.ComponentProps<"button">, "onClick">) {
 	const [mounted, setMounted] = useState(false)
-	const { theme, setTheme } = useTheme()
+	const { font, setFont } = useFont()
 
 	useEffect(() => setMounted(true), [])
 
 	function handleClick() {
-		setTheme(theme === "light" ? "dark" : "light")
+		setFont(font === "sans" ? "serif" : "sans")
 	}
 
 	return (
@@ -26,15 +26,15 @@ export function ThemeSwitcher({
 			)}
 			onClick={handleClick}
 			disabled={!mounted}
-			title="Theme Switcher"
+			title="Font Switcher"
 			{...props}
 		>
 			{!mounted ? (
 				<Loader className="animate-spin w-[1em] h-[1em]" />
-			) : theme === "light" ? (
-				<Sun className="w-[1em] h-[1em]" />
+			) : font === "sans" ? (
+				<Circle className="w-[1em] h-[1em]" />
 			) : (
-				<Moon className="w-[1em] h-[1em]" />
+				<Square className="w-[1em] h-[1em]" />
 			)}
 		</button>
 	)

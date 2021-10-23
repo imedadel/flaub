@@ -1,5 +1,20 @@
 /* Based on Raster.css */
 
+.sans-font .read {
+	--sansFont: "Inter";
+}
+
+.serif-font .read {
+	--sansFont: "Crimson Pro";
+}
+
+@supports (font-variation-settings: normal) {
+	.sans-font .read {
+		--sansFont: "Inter var";
+		--monoFont: "iaw-mono-var";
+	}
+}
+
 .read {
 	/*
   Font size is the basis of all other measurements.
@@ -58,13 +73,6 @@
 @media only screen and (max-width: 600px) {
 	.read {
 		--fontSize: calc(100vw / 30);
-	}
-}
-
-@supports (font-variation-settings: normal) {
-	.read :root {
-		--sansFont: "Inter var";
-		--monoFont: "iaw-mono-var";
 	}
 }
 

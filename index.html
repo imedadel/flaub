@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="text-gray12 bg-gray1">
+<html lang="en" class="text-gray12 bg-gray1 sans-font">
 	<head>
 		<meta charset="UTF-8" />
 		<link
@@ -23,6 +23,18 @@
 							? d.add("dark-theme")
 							: d.add("light-theme")
 					} else if (e) var x = { dark: "dark-theme", light: "light-theme" }
+					d.add(x[e])
+				} catch (e) {}
+			})()
+		</script>
+		<script>
+			// Based on next-theme, used for fonts
+			!(function () {
+				try {
+					var d = document.documentElement.classList
+					d.remove("sans-font", "serif-font")
+					var e = localStorage.getItem("font")
+					if (e) var x = { sans: "sans-font", serif: "serif-font" }
 					d.add(x[e])
 				} catch (e) {}
 			})()

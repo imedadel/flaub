@@ -1,8 +1,11 @@
 import { ThemeSwitcher } from "./ThemeSwitcher"
 import { ReactComponent as Logo } from "../icons/Custom/logo.svg"
 import { Link } from "wouter"
+import { FontSwitcher } from "./FontSwitcher"
 
-export function Header() {
+export function Header({
+	showFontSwitcher = false,
+}: { showFontSwitcher?: boolean } = {}) {
 	return (
 		<div className="w-full flex h-16 items-center justify-between">
 			<Link href="/">
@@ -12,7 +15,10 @@ export function Header() {
 					</div>
 				</a>
 			</Link>
-			<ThemeSwitcher />
+			<div className="flex items-center space-x-4">
+				{showFontSwitcher && <FontSwitcher />}
+				<ThemeSwitcher />
+			</div>
 		</div>
 	)
 }

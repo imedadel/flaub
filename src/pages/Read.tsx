@@ -34,7 +34,7 @@ export default function Page() {
 
 	return (
 		<div className="max-w-4xl mx-auto min-h-screen px-2 flex flex-col items-center">
-			<Header />
+			<Header showFontSwitcher />
 			<main
 				className="mt-32 read"
 				dangerouslySetInnerHTML={{ __html: content.join("") }}
