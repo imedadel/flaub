@@ -1,0 +1,119 @@
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: normal;
+	font-weight: 200;
+	font-display: swap;
+	src: url("Crimson-ExtraLight.woff2?v=1") format("woff2");
+}
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: italic;
+	font-weight: 200;
+	font-display: swap;
+	src: url("CrimsonPro-ExtraLightItalic.woff2?v=1") format("woff2");
+}
+
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: normal;
+	font-weight: 300;
+	font-display: swap;
+	src: url("CrimsonPro-Light.woff2?v=1") format("woff2");
+}
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: italic;
+	font-weight: 300;
+	font-display: swap;
+	src: url("CrimsonPro-LightItalic.woff2?v=1") format("woff2");
+}
+
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+	src: url("CrimsonPro-Regular.woff2?v=1") format("woff2");
+}
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: italic;
+	font-weight: 400;
+	font-display: swap;
+	src: url("CrimsonPro-Italic.woff2?v=1") format("woff2");
+}
+
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: normal;
+	font-weight: 500;
+	font-display: swap;
+	src: url("CrimsonPro-Medium.woff2?v=1") format("woff2");
+}
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: italic;
+	font-weight: 500;
+	font-display: swap;
+	src: url("CrimsonPro-MediumItalic.woff2?v=1") format("woff2");
+}
+
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: normal;
+	font-weight: 600;
+	font-display: swap;
+	src: url("CrimsonPro-SemiBold.woff2?v=1") format("woff2");
+}
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: italic;
+	font-weight: 600;
+	font-display: swap;
+	src: url("CrimsonPro-SemiBoldItalic.woff2?v=1") format("woff2");
+}
+
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+	src: url("CrimsonPro-Bold.woff2?v=1") format("woff2");
+}
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: italic;
+	font-weight: 700;
+	font-display: swap;
+	src: url("CrimsonPro-BoldItalic.woff2?v=1") format("woff2");
+}
+
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: normal;
+	font-weight: 800;
+	font-display: swap;
+	src: url("CrimsonPro-ExtraBold.woff2?v=1") format("woff2");
+}
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: italic;
+	font-weight: 800;
+	font-display: swap;
+	src: url("CrimsonPro-ExtraBoldItalic.woff2?v=1") format("woff2");
+}
+
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: normal;
+	font-weight: 900;
+	font-display: swap;
+	src: url("CrimsonPro-Black.woff2?v=1") format("woff2");
+}
+@font-face {
+	font-family: "Crimson Pro";
+	font-style: italic;
+	font-weight: 900;
+	font-display: swap;
+	src: url("CrimsonPro-BlackItalic.woff2?v=1") format("woff2");
+}
