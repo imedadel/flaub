@@ -4,7 +4,6 @@ specifiers:
   '@downwindcss/text-decoration': ^1.1.0
   '@radix-ui/colors': ^0.1.7
   '@tailwindcss/forms': ^0.4.0-alpha.1
-  '@tailwindcss/typography': ^0.5.0-alpha.2
   '@types/react': ^17.0.0
   '@types/react-dom': ^17.0.0
   '@types/throttle-debounce': ^2.1.0
@@ -42,7 +41,6 @@ dependencies:
 devDependencies:
   '@downwindcss/text-decoration': 1.1.0
   '@tailwindcss/forms': 0.4.0-alpha.1_tailwindcss@3.0.0-alpha.1
-  '@tailwindcss/typography': 0.5.0-alpha.2_tailwindcss@3.0.0-alpha.1
   '@types/react': 17.0.30
   '@types/react-dom': 17.0.9
   '@types/throttle-debounce': 2.1.0
@@ -463,18 +461,6 @@ packages:
       tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
     dependencies:
       mini-svg-data-uri: 1.4.3
-      tailwindcss: 3.0.0-alpha.1_fa866e6aa6eb85ed70431566fb699b34
-    dev: true
-
-  /@tailwindcss/typography/0.5.0-alpha.2_tailwindcss@3.0.0-alpha.1:
-    resolution: {integrity: sha512-xeTOHK2ki2ZfmmL0ThdPShM6iPtVtsw9Lt/9X6ZpZ0eaueluQESGIaE7r/3ZqqrN5ljpWkg6/5n04jyIOwiChA==}
-    peerDependencies:
-      tailwindcss: '>=3.0.0 || >= 3.0.0-alpha.1'
-    dependencies:
-      lodash.castarray: 4.4.0
-      lodash.isplainobject: 4.0.6
-      lodash.merge: 4.6.2
-      lodash.uniq: 4.5.0
       tailwindcss: 3.0.0-alpha.1_fa866e6aa6eb85ed70431566fb699b34
     dev: true
 
@@ -1251,22 +1237,6 @@ packages:
     dependencies:
       lie: 3.1.1
     dev: false
-
-  /lodash.castarray/4.4.0:
-    resolution: {integrity: sha1-wCUTUV4wna3dTCTGDP3c9ZdtkRU=}
-    dev: true
-
-  /lodash.isplainobject/4.0.6:
-    resolution: {integrity: sha1-fFJqUtibRcRcxpC4gWO+BJf1UMs=}
-    dev: true
-
-  /lodash.merge/4.6.2:
-    resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
-    dev: true
-
-  /lodash.uniq/4.5.0:
-    resolution: {integrity: sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=}
-    dev: true
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}

@@ -1,0 +1,485 @@
+/* Based on Raster.css */
+
+/*
+Variables
+*/
+:root {
+	/*
+  Font size is the basis of all other measurements.
+  It's either constant or viewport-relative. Choose one.
+  Constant: */
+	--fontSize: calc(100vw / 80);
+}
+
+.read {
+	--sansFont: "Inter";
+	--monoFont: "iaw-mono"; /* "IBM Plex Mono" */
+
+	/* line height is the basis for vertical spacing */
+	--lineHeight: calc(var(--fontSize) * 1.5);
+
+	/* horizontal and vertical spacing basis */
+	--baseline: calc(var(--lineHeight) / 2);
+
+	/* spacing around blocks */
+	--blockSpacingTop: 0px;
+	--blockSpacingBottom: var(--lineHeight);
+
+	/* horizontal rule */
+	--hrThickness: 2px;
+
+	/* heading size */
+	--h1-size: 2.8rem;
+	--h2-size: 2.2rem;
+	--h3-size: 1.4rem;
+	--h4-size: 1.1rem;
+
+	/* grid spacing */
+	--columnGap: calc(var(--lineHeight) * 2);
+	--rowGap: var(--lineHeight);
+
+	/* 1 pixel */
+	--displayScale: 1;
+	--pixel: 1px;
+
+	/* Colors */
+	--foreground-color-rgb: 0, 0, 0;
+	--foreground-color-a: 1;
+	--foreground-color: var(--gray12);
+	--background-color: var(--gray1);
+
+	font-family: var(--sansFont), -system-ui, system-ui, sans-serif;
+	font-size: var(--fontSize);
+	line-height: var(--lineHeight);
+	background: var(--background-color);
+	color: var(--foreground-color);
+	letter-spacing: -0.01em;
+	text-size-adjust: 100%;
+	font-variant-ligatures: contextual common-ligatures;
+	font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "cv10" 1; /* G */
+}
+
+@media only screen and (max-width: 600px) {
+	.read {
+		--fontSize: calc(100vw / 30);
+	}
+}
+
+@supports (font-variation-settings: normal) {
+	.read :root {
+		--sansFont: "Inter var";
+		--monoFont: "iaw-mono-var";
+	}
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+	only screen and (min-device-pixel-ratio: 1.5),
+	only screen and (min-resolution: 1.5dppx) {
+	.read :root {
+		--displayScale: 2;
+		--pixel: 0.5px;
+	}
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2.5),
+	only screen and (min-device-pixel-ratio: 2.5),
+	only screen and (min-resolution: 2.5dppx) {
+	.read :root {
+		--displayScale: 3;
+		--pixel: 0.34px;
+	}
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 3.5),
+	only screen and (min-device-pixel-ratio: 3.5),
+	only screen and (min-resolution: 3.5dppx) {
+	.read :root {
+		--displayScale: 4;
+		--pixel: 0.25px;
+	}
+}
+
+/* block */
+
+.read address,
+.read article,
+.read aside,
+.read blockquote,
+.read dd,
+.read dl,
+.read dt,
+.read fieldset,
+.read figure,
+.read form,
+.read h1,
+.read h2,
+.read h3,
+.read h4,
+.read h5,
+.read h6,
+.read li,
+.read nav,
+.read ol,
+.read p,
+.read pre,
+.read table,
+.read tfoot,
+.read ul,
+.read video {
+	margin-top: var(--blockSpacingTop);
+	margin-bottom: var(--blockSpacingBottom);
+}
+
+/* first element has no top margin */
+
+.read :first-child {
+	margin-top: unset;
+}
+
+.read :last-child {
+	margin-bottom: unset;
+}
+
+/* hr */
+
+.read hr:first-child {
+	margin-top: calc(var(--hrThickness) / -2);
+	margin-bottom: calc(var(--lineHeight) - calc(var(--hrThickness) / 2));
+}
+
+.read hr:last-child {
+	margin-top: calc(var(--lineHeight) - calc(var(--hrThickness) / 2));
+	margin-bottom: calc(var(--hrThickness) / -2);
+}
+
+.read hr,
+.read hr:only-child {
+	border: none;
+	background: var(--foreground-color);
+	height: var(--hrThickness);
+	margin-top: calc(var(--lineHeight) - calc(var(--hrThickness) / 2));
+	margin-bottom: calc(var(--lineHeight) - calc(var(--hrThickness) / 2));
+}
+
+.read * + hr:last-child {
+	/* hr following block has hrThickness removed from its top spacing */
+	margin-top: calc(var(--hrThickness) / -2);
+}
+
+.read hr:not(:first-child) {
+	/* note: collapses with preceeding block bottom margin */
+	margin-top: var(--lineHeight);
+	margin-bottom: calc(var(--lineHeight) - var(--hrThickness));
+}
+
+/* text style modifiers */
+
+.read b,
+.read strong {
+	font-weight: 600;
+}
+
+.read i,
+.read em {
+	font-style: italic;
+}
+
+/* preformatted text */
+
+.read pre,
+.read code,
+.read tt {
+	font-family: var(--monoFont), Inconsolata, Menlo, monospace;
+	font-weight: 430;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+}
+
+/*code { white-space: nowrap; }*/
+
+.read b pre,
+.read b code,
+.read b tt {
+	font-weight: 600;
+}
+
+/*pre { white-space: pre-wrap; }*/
+
+.read pre b,
+.read code b,
+.read tt b {
+	font-weight: 600;
+	font-weight: 580;
+}
+
+.read pre {
+	white-space: pre;
+	word-wrap: normal;
+	overflow-x: auto;
+	display: block;
+}
+
+.read pre code,
+.read pre tt {
+	white-space: pre;
+	word-wrap: normal;
+}
+
+/* headings */
+
+.read h {
+	display: block;
+	appearance: none;
+	-webkit-appearance: none;
+}
+
+.read h,
+.read h1 {
+	font-weight: 720;
+	letter-spacing: -0.05em;
+	font-size: var(--h1-size);
+	line-height: calc(var(--lineHeight) * 2);
+	margin-left: calc(var(--h1-size) / -22);
+	margin-top: calc(var(--lineHeight) * 2);
+	margin-bottom: var(--lineHeight);
+	word-break: break-word;
+}
+
+.read h2 {
+	font-weight: 700;
+	letter-spacing: -0.03em;
+	font-size: var(--h2-size);
+	line-height: calc(var(--lineHeight) * 2);
+	margin-left: calc(var(--h2-size) / -26);
+	margin-bottom: var(--lineHeight);
+}
+
+.read * + h2 {
+	margin-top: var(--lineHeight);
+	padding-top: calc(var(--lineHeight) * 0.5);
+	padding-bottom: calc(var(--lineHeight) * 0.5);
+	margin-bottom: 0;
+}
+
+.read h3,
+.read h4 {
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	font-size: var(--h3-size);
+	padding-top: calc(var(--baseline) * 0.75);
+	padding-bottom: calc(var(--baseline) * 0.25);
+	margin-bottom: var(--baseline);
+}
+
+.read h4 {
+	font-weight: 700;
+	letter-spacing: -0.012em;
+	font-size: var(--h4-size);
+}
+
+.read h3 + h1,
+.read h4 + h1 {
+	margin-top: calc(var(--baseline) * 3);
+}
+
+.read h3 + h2,
+.read h4 + h2 {
+	margin-top: var(--baseline);
+}
+
+.read h5,
+.read h6 {
+	font-weight: 670;
+	letter-spacing: -0.015em;
+	margin-bottom: 0;
+}
+
+/* anchor */
+
+.read a {
+	color: var(--gray12);
+	text-decoration-line: underline;
+	text-decoration-color: var(--gray4);
+	text-underline-offset: 3px;
+	white-space: nowrap;
+}
+
+.read a:hover {
+	text-decoration-color: var(--gray7);
+}
+
+.read h1 > a,
+.read h2 > a,
+.read h3 > a,
+.read h4 > a,
+.read h5 > a,
+.read h6 > a {
+	text-decoration: none;
+}
+
+.read h1 > a:hover,
+.read h2 > a:hover,
+.read h3 > a:hover,
+.read h4 > a:hover,
+.read h5 > a:hover,
+.read h6 > a:hover {
+	text-decoration: underline;
+	text-decoration: underline rgba(0, 0, 0, 0.3);
+	color: inherit;
+}
+
+/* image */
+
+.read img,
+.read img:first-child,
+.read img:last-child {
+	display: block;
+	margin-top: var(--baseline);
+	margin-bottom: var(--baseline);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.read img:only-child {
+	margin: 0 auto;
+}
+
+.read * + img {
+	margin-top: calc(var(--baseline) * -1);
+}
+
+/* list */
+
+.read li {
+	margin-left: 0.2em;
+	margin-bottom: var(--baseline);
+}
+
+.read li > p + ul,
+.read li > p + ol {
+	/* <ul>|<ol> inside <li> that directly follows a <p> */
+	/* shave off 1 baseline from space in between paragraph and list */
+	margin-top: calc(var(--baseline) * -1);
+}
+
+.read ul,
+.read ol {
+	list-style-position: outside;
+	--list-indentation: 2em;
+}
+
+.read ul {
+	padding-left: 1.3em;
+}
+
+/* custom start number -- undo reset */
+
+.read ol[start] {
+	padding-inline-start: var(--list-indentation);
+}
+
+.read ol:not([start]) {
+	list-style: none;
+	counter-reset: ol-counter;
+	padding-left: var(--list-indentation);
+}
+
+.read ol:not([start]) > li {
+	counter-increment: ol-counter;
+	position: relative;
+}
+
+.read ol:not([start]) > li::before {
+	content: counter(ol-counter) ". ";
+	font-weight: 500;
+	font-variant-numeric: tabular-nums;
+	position: absolute;
+	--space: 0.5em;
+	--width: calc(var(--list-indentation) - var(--space));
+	left: calc(-1 * calc(var(--width) + var(--space)));
+	width: var(--width);
+	height: var(--lineHeight);
+	text-align: left;
+}
+
+/* table */
+
+.read table {
+	--border-width: 1px;
+	--border-opacity: 0.15;
+	--border-color: var(--gray6);
+
+	/*width: 100%;*/
+	overflow: auto;
+	border-spacing: 0;
+	border-collapse: collapse;
+	/*box-sizing: border-box;*/
+	border-top: var(--border-width) solid var(--border-color);
+	border-right: var(--border-width) solid var(--border-color);
+	position: relative;
+
+	margin-top: calc(
+		calc(var(--lineHeight) * 1) + calc(var(--border-width) * -1)
+	);
+	margin-bottom: calc(var(--lineHeight) * 1.5);
+}
+
+.read table:first-child {
+	margin-top: calc(
+		calc(var(--lineHeight) * 0.5) + calc(var(--border-width) * -1)
+	);
+	margin-bottom: calc(var(--lineHeight) * 0.5);
+}
+
+.read table * {
+	box-sizing: border-box;
+}
+
+.read table th,
+.read table td {
+	position: relative;
+	padding: var(--baseline) 1em;
+
+	background-image: linear-gradient(
+		90deg,
+		var(--border-color),
+		var(--border-color) 1px,
+		transparent 1px,
+		transparent calc(var(--baseline) / 2)
+	);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	background-position: 0 -1px;
+}
+
+.read table th:after,
+.read table td:after {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	height: var(--border-width);
+	background: var(--border-color);
+	content: "A";
+	color: transparent;
+	pointer-events: none;
+}
+
+.read table th {
+	text-align: left;
+	font-weight: 600;
+}
+
+.read table th[align="center"] {
+	text-align: center;
+}
+
+.read table th[align="right"] {
+	text-align: right;
+}
+
+.read p + table {
+	margin-top: calc(
+		calc(var(--lineHeight) * 1.5) + calc(var(--border-width) * -1)
+	);
+}

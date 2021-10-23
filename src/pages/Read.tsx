@@ -36,7 +36,7 @@ export default function Page() {
 		<div className="max-w-4xl mx-auto min-h-screen px-2 flex flex-col">
 			<Header />
 			<main
-				className="mt-32 prose prose-2xl"
+				className="mt-32 read"
 				dangerouslySetInnerHTML={{ __html: content.join("") }}
 			/>
 		</div>
