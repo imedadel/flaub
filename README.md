@@ -8,12 +8,6 @@ The parser is inspired by [epub-parser](https://github.com/gaoxiaoliangz/epub-pa
 
 It's named Flaue 'cause Flaubert. here's a moustache. I couldn't find one that looks like Flaub's.
 
-<style>
-:root {
-	--gray12: black;
-}
-</style>
-
 ![Moustache](./src/icons/Custom/logo.svg)
 
 ## Features
