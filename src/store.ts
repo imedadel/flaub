@@ -3,9 +3,18 @@ import { persist } from "zustand/middleware"
 
 type Store = {
 	books: {
-		[id: string]: string
+		[id: string]: {
+			title?: string
+			author?: string
+			publisher?: string
+		}
 	}
-	addBook: (id: string, name: string) => void
+	addBook: (
+		id: string,
+		title?: string,
+		author?: string,
+		publisher?: string
+	) => void
 	delBook: (id: string) => void
 }
 
@@ -13,8 +22,10 @@ export const useStore = create<Store>(
 	persist(
 		(set) => ({
 			books: {},
-			addBook: (id, name) =>
-				set((state) => ({ books: { ...state.books, [id]: name } })),
+			addBook: (id, title, author, publisher) =>
+				set((state) => ({
+					books: { ...state.books, [id]: { title, author, publisher } },
+				})),
 			delBook: (id) =>
 				set((state) => {
 					console.log("TODO: `delBook`")

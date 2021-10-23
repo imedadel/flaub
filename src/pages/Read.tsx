@@ -1,7 +1,6 @@
 import { get } from "idb-keyval"
 import { useEffect, useState } from "react"
 import { useRoute } from "wouter"
-import { parse } from "../utils/parse"
 
 export default function Page() {
 	const [_, params] = useRoute("/read/:id")
@@ -9,9 +8,8 @@ export default function Page() {
 
 	useEffect(() => {
 		if (params?.id) {
-			get(params.id).then(async (f) => {
-				const parsed = await parse(f)
-				setContent(parsed?.sections ?? [])
+			get(`sections-${params.id}`).then(async (s) => {
+				setContent(s ?? [])
 			})
 		}
 	}, [params?.id])
