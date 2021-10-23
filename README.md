@@ -5,9 +5,7 @@
 Flaub is a browser-based EPUB parser and reader. It unzips, parses, and caches your EPUB file and allows you to easily read it. It's still a work in progress as I read more books and unravel more bugs. **[Try it out!](https://flaub.vercel.app)**
 
 <p align="center">
-
-![Moustache](./screenshot.png)
-
+<img src="./screenshot.png" />
 </p>
 
 Feel free to fork it or contribute.
@@ -21,9 +19,7 @@ The parser is inspired by [epub-parser](https://github.com/gaoxiaoliangz/epub-pa
 It's named Flaub 'cause Flaubert. Here's a moustache. I couldn't find one that looks like Flaub's.
 
 <p align="center">
-
-![Moustache](./src/icons/Custom/static-logo.svg)
-
+<img src="./src/icons/Custom/static-logo.svg" />
 </p>
 
 ## Features
