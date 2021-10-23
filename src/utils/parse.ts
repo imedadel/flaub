@@ -46,7 +46,7 @@ export async function parse(file: File) {
 	const cleanMetadata = {
 		title: metadata?.querySelector("title")?.innerHTML,
 		author: metadata?.querySelector("creator")?.innerHTML,
-		publisher: metadata?.querySelector("creator")?.innerHTML,
+		publisher: metadata?.querySelector("publisher")?.innerHTML,
 	}
 
 	const sections: string[] = []
